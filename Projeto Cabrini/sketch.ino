@@ -8,6 +8,8 @@
 #include <LiquidCrystal_I2C.h>
 #include <RTClib.h>
 #include "DHT.h"
+#include <HCSR04.h>
+
 
 // === DEFINIÇÕES DE HARDWARE ===
 #define DHTPIN 2
@@ -20,8 +22,8 @@
 #define BTN_INC A1
 #define BTN_OK A2
 #define BTN_UNIT A3 // Botão para alternar unidade
-#define TRIGGER 5
-#define ECHO 6
+#define TRIGGER 6
+#define ECHO 5
 
 // === OPCOES ===
 #define LOG_OPTION 1
@@ -31,6 +33,8 @@
 DHT dht(DHTPIN, DHTTYPE);
 RTC_DS1307 rtc;
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+UltraSonicDistanceSensor distanceSensor(TRIGGER, ECHO); // HCSR04
+
 
 // === EEPROM / REGISTROS ===
 const int maxRecords = 100;
@@ -231,14 +235,32 @@ void setup()
   animarGarrafa();
 }
 
+// --- Função auxiliar: média de 3 leituras válidas ---
+float lerDistanciaEstavelCm() {
+  float sum = 0.0;
+  int cnt = 0;
+
+  for (int i = 0; i < 3; i++) {
+    float d = distanceSensor.measureDistanceCm();
+    // a lib costuma retornar valor <= 0 quando sem eco / fora do range
+    if (d > 0 && d <= 400) { // limite prático do HC-SR04
+      sum += d;
+      cnt++;
+    }
+    delay(25); // pequeno intervalo entre pings
+  }
+
+  if (cnt == 0) return -1.0;       // nenhuma leitura válida
+  return sum / cnt;                // média das válidas
+}
+
+
 void loop()
 {
 
   // === LEITURA DO ULTRASSÔNICO (estabilizada) ===
 
   float distancia = lerDistanciaEstavelCm();
-
-  // === CONTROLE DO LCD COM HISTERSE ===
 
   if (distancia < 0 || distancia > limiteProximidadeOff)
   {
