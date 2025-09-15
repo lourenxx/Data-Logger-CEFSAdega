@@ -1,4 +1,4 @@
-# 📊 Data Logger CEFSAdega
+# 📊 Data Logger CEFSAdega 🍷
 
 ![Arduino](https://img.shields.io/badge/Arduino-Uno-blue?logo=arduino)  
 ![C++](https://img.shields.io/badge/Language-C%2B%2B-green)  
