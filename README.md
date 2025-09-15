@@ -1,4 +1,4 @@
-# 📊 Data Logger Orientado a Eventos com Arduino
+# 📊 Data Logger CEFSAdega
 
 ![Arduino](https://img.shields.io/badge/Arduino-Uno-blue?logo=arduino)  
 ![C++](https://img.shields.io/badge/Language-C%2B%2B-green)  
@@ -115,4 +115,4 @@ timestamp,data,hora,temperatura,umidade,luminosidade
 
 ---
 
-📌 **Autor:** Projeto acadêmico/experimental desenvolvido no **CEFSAdega** 🍷  
+📌 **Autores:** 
