@@ -98,21 +98,13 @@ Cada registro ocupa **10 bytes**, no formato:
 
 ## 📊 Exemplo de Exportação (Serial/CSV)
 
-```csv
+```
 timestamp,data,hora,temperatura,umidade,luminosidade
 1736943382,14/09/2025,18:23:02,24.53,45.12,12.4
 1736943521,14/09/2025,18:25:21,26.10,52.30,35.0
 ```
 
----
+📌 Autores: Arthur Benevides, Guilherme Matos, Guilherme Pexirile, Juan Hernandes, Murilo Ando
 
-## 🚀 Melhorias Futuras
 
-- Gravação em **cartão SD** para expandir capacidade.  
-- Envio de dados em **tempo real via Wi-Fi (ESP8266/ESP32)**.  
-- Interface Web para consulta dos registros.  
-- Ajuste dinâmico de limites via menu.  
 
----
-
-📌 **Autores:** 
